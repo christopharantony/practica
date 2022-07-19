@@ -1,0 +1,49 @@
+.Landing {
+    min-height: 100vh;
+    text-align: center;
+}
+
+.Landing-Content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.Landing-Image{
+    height: 440px;
+    width: 460px;
+    padding: 1rem;
+    pointer-events: none;
+}
+
+.Landing-Para{
+    font-size: 22px;
+}
+.Landing-Figcaption{
+    width: 450px;
+    font-family: 'Iceland', cursive;
+    color: #fff;
+    padding-right: 2rem;
+}
+
+.Landing-About{
+    padding: 15px;
+    min-height: 3rem;
+    min-width: 6.5rem;
+    font-family: 'Iceland', cursive;
+    font-size: 3vmin;
+    color: #266bac;
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.Landing-About:hover {
+    background-color:#266bac;
+    color: #fff;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
+    transition: 0.7s;
+}

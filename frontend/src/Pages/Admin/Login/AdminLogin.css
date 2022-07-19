@@ -1,0 +1,13 @@
+.AdminLogin{
+    min-height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.AdminLogin-Form{
+    font-family: 'Iceland', cursive;
+    color: #fff;
+}

@@ -1,0 +1,46 @@
+.About {
+    text-align: center;
+}
+
+.About-Image{
+    height: 440px;
+    width: 460px;
+    padding: 1rem;
+    pointer-events: none;
+}
+
+.About-Section1, .About-Section2, .About-Section3 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.Landing-Image{
+    height: 440px;
+    width: 460px;
+    padding: 1rem;
+    pointer-events: none;
+}
+
+.About-Para{
+    font-size: 22px;
+}
+.About-Figcaption{
+    width: 450px;
+    font-family: 'Iceland', cursive;
+    color: #fff;
+    padding-right: 2rem;
+}
+
+.Footer{
+    min-height: 100px;
+    color: #fff;
+    font-family: 'Iceland', cursive;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    pointer-events: none;
+    background: linear-gradient(180deg, #1F223F 0%, #00052F 100%);
+}

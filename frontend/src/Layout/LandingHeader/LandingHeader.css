@@ -1,0 +1,64 @@
+.Landing-logo {
+    height: 6vmin;
+    pointer-events: none;
+    padding-left: 3rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .Landing-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.Landing-header {
+    /* border: 1px solid #eaeaea; */
+    background-color: none;
+    min-height: 15vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: calc(10px + 2vmin);
+    color: #14FF8E;
+}
+
+@keyframes Landing-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+
+.Button-head {
+    text-decoration: none;
+    height: 5vmin;
+    width: 15vmin;
+    font-family: 'Iceland', cursive;
+    font-size: 2.5vmin;
+    color: #14FF8E;
+    border: 1.5px solid #14FF8E;
+    background: none;
+    margin-right: 3rem;
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
+}
+
+.Button-head:hover {
+    transform: scale(1.1);
+    background: #14FF8E;
+    cursor: pointer;
+    font-size: .9rem;
+    font-weight: 500;
+    color: #360D70;
+    border-radius: 2px;
+}
+
+.Button-head:active {
+    transform: scale(.9);
+}
