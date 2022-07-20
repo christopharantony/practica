@@ -1,6 +1,7 @@
 .Landing {
     min-height: 100vh;
     text-align: center;
+    overflow: hidden;
 }
 
 .Landing-Content {

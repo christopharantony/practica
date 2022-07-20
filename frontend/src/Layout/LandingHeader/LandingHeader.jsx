@@ -17,13 +17,12 @@ function LandingHeader() {
                 <button className='Button-head' onClick={() => {
                     showLoginModal ? close() : open()
                 }} >LOG IN</button>
-
                 <AnimatePresence
                     initial={false}
                     exitBeforeEnter={true}
                     onExitComplete={() => null}
                     >
-                    {showLoginModal && <LoginModal handleClose={close} showLoginModal={showLoginModal} />}
+                    {showLoginModal && <LoginModal handleClose={close} />}
                 </AnimatePresence>
                 {/* <ButtonHead action="SIGN UP" route="/signup" />
             <ButtonHead action="LOG IN" route="/login" /> */}
