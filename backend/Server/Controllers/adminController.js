@@ -22,14 +22,13 @@ module.exports.adminLogin = async (req, res, next) => {
         });
         res.status(200).json({ admin: admin._id, created: true });
     } else {
-        res.status(400).json({
-            message: "Invalid email or password",
+        res.json({
+            errors: "Invalid email or password",
             created: false
         })
     }
     } catch (error) {
         console.log(error);
-        const errors = handleErrors(error);
-        res.json({ errors, created: false });
+        res.json({ errors:error , created: false });
     }
 }

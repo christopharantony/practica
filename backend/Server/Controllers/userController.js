@@ -96,11 +96,12 @@ module.exports.Login = async (req, res) => {
                 })
             }
         }else{
-            return res.status(400).json({
-                message: "Invalid credentials"
+            return res.json({
+                error: "Invalid credentials"
             })
         }
     } catch (error) {
         console.log(error)
+        res.status(500).json({ message: "Something went wrong" }, error)
     }
 }

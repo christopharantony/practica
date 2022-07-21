@@ -19,8 +19,8 @@ app.use(morgan("tiny"))
 app.use(express.json());
 app.use(cookieParser())
 
-app.use("/admin", require("./Server/Routes/AdminRoutes"))
-app.use("/", require("./Server/Routes/UserRoutes"))
+app.use("/api/admin", require("./Server/Routes/AdminRoutes"))
+app.use("/api", require("./Server/Routes/UserRoutes"))
 
 app.listen(port, () => {
     console.log(`http://localhost:${port}`)
