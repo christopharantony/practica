@@ -1,13 +1,54 @@
-.AdminLogin{
-    min-height: 100vh;
-    text-align: center;
+.adminLogin{
+    height: 100vh;
+    width: 100vw;
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
+    background-color: rgb(236, 236, 238);
+    overflow: hidden;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-sizing: border-box;
 }
 
-.AdminLogin-Form{
-    font-family: 'Iceland', cursive;
-    color: #fff;
+.Admin-container {
+    background-color: white;
+    padding: 1rem 3rem;
+    padding-bottom: 2rem;
+    border-radius: 0.5rem;
+    border-top: #6439ff 0.5rem solid;
+}
+
+.AdminLogin-form{
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+}
+
+.AdminLogin-heading{
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.AdminLogin-input{
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    border: 1px solid gray;
+    font-size: 1.1rem;
+}
+
+.AdminLogin-Button{
+    background-color: #6439ff;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 0.3rem;
+}
+
+.AdminLogin-form .AdminLogin-div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
 }

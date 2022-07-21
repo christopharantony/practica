@@ -5,7 +5,7 @@ import BackdropLanding from "../BackdropLanding/BackdropLanding"
 import image from '../../../Assets/Images/Login-User.png'
 import CloseIcon from '@mui/icons-material/Close';
 import { ToastContainer, toast } from 'react-toastify';
-import axios from 'axios'
+import axios from '../../../axiosInstance'
 import './LoginModal.css'
 
 const dropIn = {
@@ -44,7 +44,11 @@ function LoginModal({ handleClose }) {
         e.preventDefault()
         console.log('submit', values)
         try {
-            const { data } = await axios.post('http://localhost:4000/login', {
+            if (values.email === "" || values.password === "") {
+                generateError("Please fill all fields")
+                return;
+            }
+            const { data } = await axios.post('api/login', {
                 ...values
             }, {
                 withCredentials: true

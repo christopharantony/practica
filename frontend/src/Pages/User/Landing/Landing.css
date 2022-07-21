@@ -21,6 +21,8 @@
 
 .Landing-Para{
     font-size: 22px;
+    font-family: 'Iceland', cursive;
+    margin: 1.5rem;
 }
 .Landing-Figcaption{
     width: 450px;

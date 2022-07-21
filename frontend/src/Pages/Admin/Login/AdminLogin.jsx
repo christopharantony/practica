@@ -1,62 +1,77 @@
-import React, { useState } from 'react'
-import { Box, TextField, FormControl, InputLabel, FilledInput, InputAdornment, IconButton } from '@mui/material'
-import { Visibility, VisibilityOff } from '@mui/icons-material'
-import AdminLogo from '../../../Assets/Images/Administrator.png';
+import React,{useState} from 'react'
+import { useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
+import axios from '../../../axiosInstance';
 import './AdminLogin.css'
 
 function AdminLogin() {
-    const [values, setValues] = useState({
-        email: '',
-        password: ''
+    const navigate = useNavigate();
+    const [values,setValues] = useState({
+        email:"",
+        password:"",
+    });
+
+    const generateError = (error) => 
+    toast.error(error,{
+        position: "bottom-right"
     })
-    const handleChange = (prop) => (event) => {
-        setValues({ ...values, [prop]: event.target.value });
-    };
 
-    const handleClickShowPassword = () => {
-        setValues({
-            ...values,
-            showPassword: !values.showPassword,
-        });
-    };
-
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
+    const handleSubmit = async(e)=>{
+        e.preventDefault();
+        try {
+            const {data} = await axios.post("api/admin/login", {
+                ...values
+            },{
+                withCredentials:true
+            });
+            if (data){
+                if (data.errors) {
+                    generateError("Invalid Email or Password")
+                } else {
+                    console.log(data);
+                    navigate("/");
+                }
+            }
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
     return (
-        <div className='AdminLogin'>
-            <div className='AdminLogin-Image'>
-                <img src={AdminLogo} alt="admin" />
-            </div>
-            <div className='AdminLogin-Form'>
-                <h1>Admin Login</h1>
-                <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-                <TextField id="filled-basic" label="Filled" variant="filled" />
-                <FormControl sx={{ m: 1, width: '25ch' }} variant="filled">
-                    <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
-                    <FilledInput
-                        id="filled-adornment-password"
-                        type={values.showPassword ? 'text' : 'password'}
-                        value={values.password}
-                        onChange={handleChange('password')}
-                        endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                    aria-label="toggle password visibility"
-                                    onClick={handleClickShowPassword}
-                                    onMouseDown={handleMouseDownPassword}
-                                    edge="end"
-                                >
-                                    {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            </InputAdornment>
-                        }
+        <div className="adminLogin">
+        <div className='Admin-container'>
+            <h2 className='AdminLogin-heading'>Admin Login</h2>
+            <form className='AdminLogin-form' onSubmit={handleSubmit} >
+                <div className='AdminLogin-div'>
+                    <label htmlFor="email">Email</label>
+                    <input 
+                    type="email" 
+                    name="email" 
+                    placeholder='Email' 
+                    className='AdminLogin-input'
+                    onChange={(e)=>{
+                        setValues({...values,[e.target.name]:e.target.value})
+                    }}
                     />
-                </FormControl>
-                </Box>
-            </div>
+                </div>
+                <div className='AdminLogin-div'>
+                    <label htmlFor="password">Password</label>
+                    <input 
+                    type="password" 
+                    name="password" 
+                    placeholder='Password' 
+                    className='AdminLogin-input'
+                    onChange={(e)=>{
+                        setValues({...values,[e.target.name]:e.target.value})
+                    }}
+                    />
+                </div>
+                <button className='AdminLogin-Button' type="submit">Submit</button>
+            </form>
+            <ToastContainer />
+        </div>
         </div>
     )
 }
 
 export default AdminLogin
+
