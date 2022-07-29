@@ -1,0 +1,41 @@
+.User-Home-logo {
+    height: 6vmin;
+    pointer-events: none;
+    padding-left: 3rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .User-Home-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.User-Home-emptydiv{
+    flex: .6;
+}
+
+.User-Home-Newpost{
+    cursor: pointer;
+    padding-right: 5rem;
+}
+
+.User-Home-Bell{
+    cursor: pointer;
+    padding-right : 1rem;
+}
+
+.User-Home-Avatar{
+    cursor: pointer;
+}
+
+.User-Home-Header {
+    border: 1px solid #eaeaea;
+    background-color: none;
+    min-height: 15vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: calc(10px + 2vmin);
+    color: #14FF8E;
+}

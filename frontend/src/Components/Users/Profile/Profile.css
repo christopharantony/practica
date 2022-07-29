@@ -1,0 +1,95 @@
+.Profile{
+    display: grid;
+    place-items: center;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.User-box{
+    height: 200px;
+    width: 180px;
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 1;
+    top:3em;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 6px;
+    backdrop-filter: blur(10px);
+}
+
+.User-content{
+    z-index: 2;
+    position: absolute;
+}
+
+.Profile-Avatar{
+    position: absolute;
+    top: -180px;
+    left: 50px;
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+    box-shadow: 2px 1px 10px rgba(0, 0, 0, 15);
+}
+
+.Profile-Name{
+    position:absolute;
+    left: 60px;
+    top: -110px;
+    font-weight: 100;
+    color: #baafbd;
+}
+
+.User-profession{
+    letter-spacing: 1px;
+    font-size: .6em;
+    color:grey;
+    z-index: 30;
+    left: 50%;
+    display: flex;
+    justify-content: center;
+    top: -75px;
+    position: relative;
+    font-family: 'Edu VIC WA NT Beginner', cursive;
+}
+
+.User-card__info{
+    z-index: 10;
+    position: relative;
+    margin: 1em 0;
+    list-style-type: none;
+    padding: 0;
+}
+
+.User-card__info .Profile-lists {
+    display: inline-block;
+    text-align: center;
+    padding: 0.5em;
+    position: relative;
+    left: 30px;
+    top: -65px;
+}
+
+.User-value{
+    font-size: 1rem;
+    display: block;
+    font-weight: bold;
+    color: #8e7d91;
+}
+
+.User-parameter{
+    font-weight: 100;
+    font-size: .8rem;
+    color: #e7dfe8;
+}
+
+.User-follow{
+    position: absolute;
+    width: 10em;
+    top: 0;
+    z-index: 10;
+    left: 25px;
+    background: transparent;
+    color: #c8c1c9;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+}

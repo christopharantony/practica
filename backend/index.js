@@ -1,7 +1,8 @@
 const express = require("express")
 const cookieParser = require("cookie-parser")
 const morgan = require("morgan");
-const cors = require("cors")
+const cors = require("cors");
+const { notfound, errorHandler } = require("./Server/Middlewares/ErrorMiddleware");
 const app = express()
 
 require("./Server/Database/Database")()
@@ -21,6 +22,9 @@ app.use(cookieParser())
 
 app.use("/api/admin", require("./Server/Routes/AdminRoutes"))
 app.use("/api", require("./Server/Routes/UserRoutes"))
+
+app.use(notfound)
+app.use(errorHandler)
 
 app.listen(port, () => {
     console.log(`http://localhost:${port}`)

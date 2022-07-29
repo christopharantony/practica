@@ -6,6 +6,7 @@ import image from '../../../Assets/Images/Login-User.png'
 import CloseIcon from '@mui/icons-material/Close';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from '../../../axiosInstance'
+import { useNavigate } from "react-router-dom";
 import './LoginModal.css'
 
 const dropIn = {
@@ -30,6 +31,7 @@ const dropIn = {
 }
 
 function LoginModal({ handleClose }) {
+    const navigate = useNavigate();
     const [values, setValues] = useState({
         email: "",
         password: "",
@@ -56,6 +58,7 @@ function LoginModal({ handleClose }) {
             if (data.error) {
                 generateError("Invalid Email or Password")
             } else {
+                navigate('/home')
                 handleClose()
             }
         } catch (error) {

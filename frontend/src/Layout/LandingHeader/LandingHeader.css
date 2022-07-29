@@ -1,11 +1,11 @@
-.Landing-logo {
+.User-Home-Logo {
     height: 6vmin;
     pointer-events: none;
     padding-left: 3rem;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    .Landing-logo {
+    .User-Home-Logo {
         animation: App-logo-spin infinite 20s linear;
     }
 }

@@ -5,6 +5,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Name is required"]
     },
+    pic :{
+        type: String,
+        required: true,
+        default: 
+            "https://www.w3schools.com/howto/img_avatar.png"
+    },
     blocked:{
         type: Boolean,
         default: false
@@ -27,12 +33,15 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Password is required"]
     },
-    domain: String,
     experience: {
         type: Number,
         default: 0
     },
-    Company: String
+    domain: String,
+    company: String
+},
+{
+    timestamps: true
 });
 
 module.exports = mongoose.model("User", userSchema);

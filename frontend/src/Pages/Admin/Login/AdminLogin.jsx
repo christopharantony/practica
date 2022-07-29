@@ -3,8 +3,17 @@ import { useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
 import axios from '../../../axiosInstance';
 import './AdminLogin.css'
+import { useEffect } from 'react';
+import { useCookies } from 'react-cookie';
 
 function AdminLogin() {
+    const [cookie] = useCookies([]);
+    useEffect(()=>{
+        const token = localStorage.getItem('adminToken');
+        if (!token){
+            navigate('/admin/login')
+        }
+    },[])
     const navigate = useNavigate();
     const [values,setValues] = useState({
         email:"",
@@ -24,16 +33,17 @@ function AdminLogin() {
             },{
                 withCredentials:true
             });
-            if (data){
-                if (data.errors) {
-                    generateError("Invalid Email or Password")
-                } else {
-                    console.log(data);
-                    navigate("/");
-                }
+            if (data.created){
+                localStorage.setItem("adminToken",data.token);
+                navigate("/admin/users")
+                return;
+            }else{
+                generateError("Invalid Email or Password")
             }
         } catch (error) {
             console.log(error.message);
+            generateError("Something went wrong");
+            generateError(error.response.data.message);
         }
     }
     return (

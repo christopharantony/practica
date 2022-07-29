@@ -1,14 +1,23 @@
 const Userdb = require('../Models/UserModel');
 const bcrypt = require('bcrypt');
 
-module.exports.isUserExist = async (email) => {
+module.exports.isUserExist = async (email,mobile) => {
     try {
-        const user = await Userdb.findOne({ email });
+        const user = await Userdb.findOne({ $or: [{email},  {mobile}] })
         if (user) {
             return true;
         } else {
             return false;
         }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+module.exports.userByIdService = async (id) => {
+    try {
+        const user = await Userdb.findById(id);
+        return user;
     } catch (error) {
         console.log(error)
     }
@@ -37,7 +46,7 @@ module.exports.createInterviewer = async (
         return user;
     }
     catch (error) {
-        console.log(error)
+        console.log('=>>',error.message,'+++++')
     }
 }
 
