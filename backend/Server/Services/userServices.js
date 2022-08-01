@@ -1,4 +1,4 @@
-const Userdb = require('../Models/UserModel');
+const Userdb = require('../Models/userModel');
 const bcrypt = require('bcrypt');
 
 module.exports.isUserExist = async (email,mobile) => {

@@ -2,9 +2,18 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import LandingHeader from '../../../Layout/LandingHeader/LandingHeader';
 import image from '../../../Assets/Images/Landing.png';
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 import './Landing.css';
 
 function Landing() {
+    const navigate = useNavigate();
+    useEffect(()=>{
+        const token = localStorage.getItem('token');
+        const user = localStorage.getItem('user');
+        if (token && user){
+            navigate('/home')
+        }})
     return (
         <div className="Landing">
             <LandingHeader />

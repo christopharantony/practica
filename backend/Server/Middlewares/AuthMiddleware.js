@@ -1,5 +1,5 @@
-const User = require("../Models/UserModel");
-const Admin = require("../Models/AdminModel");
+const User = require("../Models/userModel");
+const Admin = require("../Models/adminModel");
 const jwt = require("jsonwebtoken");
 
 module.exports.checkUser = (req, res, next) => {
@@ -47,6 +47,16 @@ module.exports.checkInterviewer = (req, res, next) => {
         next();
     }
 }
+
+
+
+
+
+
+
+
+
+
 
 
 // module.exports.checkAdmin = (req, res, next) => {

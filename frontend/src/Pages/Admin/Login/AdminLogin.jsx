@@ -4,14 +4,12 @@ import { ToastContainer, toast } from 'react-toastify'
 import axios from '../../../axiosInstance';
 import './AdminLogin.css'
 import { useEffect } from 'react';
-import { useCookies } from 'react-cookie';
 
 function AdminLogin() {
-    const [cookie] = useCookies([]);
     useEffect(()=>{
         const token = localStorage.getItem('adminToken');
-        if (!token){
-            navigate('/admin/login')
+        if (token){
+            navigate('/admin/users')
         }
     },[])
     const navigate = useNavigate();

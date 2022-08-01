@@ -26,10 +26,17 @@
 
 .User-Home-Avatar{
     cursor: pointer;
+    transition: 300ms;
+    box-shadow: 2px 1px 10px rgba(0, 0, 0, .5);
+}
+
+.User-Home-Avatar:hover{
+    box-shadow: 2px 1px 10px rgba(0, 0, 0, 1);
+    transform: scale(1.02);
 }
 
 .User-Home-Header {
-    border: 1px solid #eaeaea;
+    /* border: 1px solid #eaeaea; */
     background-color: none;
     min-height: 15vh;
     display: flex;

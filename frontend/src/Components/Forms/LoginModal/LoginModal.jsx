@@ -52,17 +52,26 @@ function LoginModal({ handleClose }) {
             }
             const { data } = await axios.post('api/login', {
                 ...values
+            },
+            {
+                headers: {
+                    'authToken': localStorage.getItem("token"),
+                }
             }, {
                 withCredentials: true
             })
             if (data.error) {
                 generateError("Invalid Email or Password")
-            } else {
+            } else if (data.created) {
+                localStorage.setItem('token', data.token)
+                localStorage.setItem('user', JSON.stringify(data.user))
                 navigate('/home')
                 handleClose()
             }
         } catch (error) {
-            console.log(error)
+            console.log(error.message)
+            generateError("Something went wrong");
+            generateError(error.response.data.message);
         }
     }
     return (

@@ -20,8 +20,9 @@ app.use(morgan("tiny"))
 app.use(express.json());
 app.use(cookieParser())
 
-app.use("/api/admin", require("./Server/Routes/AdminRoutes"))
-app.use("/api", require("./Server/Routes/UserRoutes"))
+app.use("/api/admin", require("./Server/Routes/adminRoutes"))
+app.use("/api/post", require("./Server/Routes/postRoutes"))
+app.use("/api", require("./Server/Routes/userRoutes"))
 
 app.use(notfound)
 app.use(errorHandler)

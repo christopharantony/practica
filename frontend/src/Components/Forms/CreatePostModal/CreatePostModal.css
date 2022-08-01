@@ -1,0 +1,74 @@
+.bg-white {
+    background-color: #D9D9D9;
+    border: 1px solid #14FF8E;
+    box-shadow: 0px 4px 23px #14FF8E;
+}
+
+.CreatePost-modal {
+    width: min(50%, 35rem, 90%);
+    height: min(50%, 38.5rem);
+
+    margin: auto;
+    border-radius: 12px;
+    align-items: center;
+    position: absolute;
+    float: left;
+    left: 25.56%;
+    top: 15%;
+    transform: translate(-50%, -50%);
+    height: 400px;
+}
+
+.CreatePost-header {
+    border-bottom: 1px solid #306696;
+    height: 5.5rem;
+}
+
+.CreatePost-Footer {
+    border-top: 1px solid #306696;
+    padding-top: 1rem;
+    padding-left: 0.7rem;
+}
+
+.CreatePost-Close-button {
+    cursor: pointer;
+    padding-top: 1rem;
+}
+
+.css-i4bv87-MuiSvgIcon-root {
+    font-size: 2rem !important;
+}
+
+.CreatePost-Heading {
+    color: #393131;
+    font-weight: 400;
+    font-size: 2rem;
+    font-family: 'Iceland', cursive;
+    padding: 1rem 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.CreatePost-DefaultImage {
+    padding: 5rem 14rem;
+}
+.CreatePost-Image{
+    width: 550px;
+    padding: 5px;
+    height: 250px;
+}
+
+.CreatePost-send {
+    font-family: 'Iceland',cursive;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 35px;
+    line-height: 34px;
+    border: none;
+
+    background: linear-gradient(100.2deg, #8746F1 18.67%, #4559BB 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}

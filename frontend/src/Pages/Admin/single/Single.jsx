@@ -1,8 +1,19 @@
 import "./single.scss";
 import Sidebar from "../../../Components/Admin/sidebar/Sidebar";
 import List from "../../../Components/Admin/table/Table";
-
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 const Single = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const verifyUser = async () => {
+      const token = localStorage.getItem("adminToken");
+      if (!token) {
+        navigate('/admin/login')
+      }
+    };
+    verifyUser();
+  }, [])
   return (
     <div className="single">
       <Sidebar />
@@ -42,8 +53,8 @@ const Single = () => {
           </div>
         </div>
         <div className="bottom">
-        <h1 className="title">Attended Interviews</h1>
-          <List/>
+          <h1 className="title">Attended Interviews</h1>
+          <List />
         </div>
       </div>
     </div>

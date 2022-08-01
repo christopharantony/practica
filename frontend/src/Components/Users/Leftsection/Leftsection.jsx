@@ -1,6 +1,7 @@
 import React from "react";
 import "./Leftsection.css";
 function Leftsection() {
+    const user = JSON.parse(localStorage.getItem('user'))
     return (
         <div className="Leftsection">
             <div className="User-Home-container">
@@ -8,10 +9,11 @@ function Leftsection() {
                 <div className="User-Home-content">
                     <img
                         className="Leftsection-Avatar"
-                        src="https://i.pravatar.cc/300"
+                        // src="https://i.pravatar.cc/300"
+                        src={user.pic}
                         alt="avatar"
                     />
-                    <h3 className="Leftsection-Name">Amelie</h3>
+                    <h3 className="Leftsection-Name">{user.name}</h3>
                 </div>
 
                 <ul className="User-Home-card__info">

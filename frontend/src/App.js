@@ -5,15 +5,13 @@ import Login from './Pages/Admin/Login/AdminLogin';
 // import AdminHome from './Pages/Admin/home/Home';
 import Home from './Pages/User/Home/Home'
 import UserList from './Pages/Admin/userList/userList';
-import InterviewerList from './Pages/Admin/interviewerList/interviewerList'
+import InterviewerList from './Pages/Admin/interviewerList/InterviewerList'
 import Single from './Pages/Admin/single/Single';
 import About from './Pages/User/About/About';
 import Landing from './Pages/User/Landing/Landing';
 import "react-toastify/dist/ReactToastify.css";
-import { useCookies } from 'react-cookie'
 
 function App() {
-  const [cookies] = useCookies([])
   return (
     <>
       <BrowserRouter>
@@ -26,7 +24,7 @@ function App() {
       <div className="app">
         <BrowserRouter>
           <Routes>
-            {/* <Route path="/admin" element={ <UserList />} /> */}
+            <Route path="/admin" element={ <UserList />} />
             {/* <Route index element={<Home />} /> */}
             {/* <Route path='/adminLogin' element={<Login />} /> */}
             <Route path="/admin/login" element={<Login />} />

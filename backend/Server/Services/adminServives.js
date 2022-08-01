@@ -1,5 +1,5 @@
-const Admindb = require('../Models/AdminModel')
-const Userdb = require('../Models/UserModel')
+const Admindb = require('../Models/adminModel')
+const Userdb = require('../Models/userModel')
 const bcrypt = require('bcrypt');
 
 module.exports.adminLogin = async (email, password) => {

@@ -2,10 +2,8 @@ import "./userList.scss"
 import Sidebar from "../../../Components/Admin/sidebar/Sidebar"
 import Datatable from "../../../Components/Admin/userDatatable/userDatatable"
 import { useEffect } from "react"
-import { useCookies } from "react-cookie"
 import { useNavigate } from "react-router-dom"
 const UserList = () => {
-  const cookie = useCookies([]);
   const navigate = useNavigate();
   useEffect(() => {
     const verifyUser = async () => {

@@ -1,14 +1,5 @@
 const { isUserExist, createInterviewer, createInterviewee, userLogin } = require('../Services/userServices');
 const { createToken, maxAge } = require('../Utils/generateToken');
-// const jwt = require("jsonwebtoken")
-
-// const maxAge = 3 * 24 * 60 * 60;
-
-// const createToken = (id, role) => {
-//     return jwt.sign({ id, role }, process.env.JWT_SECRET, {
-//         expiresIn: maxAge,
-//     });
-// };
 
 module.exports.Signup = async (req, res) => {
     try {
@@ -77,11 +68,11 @@ module.exports.Login = async (req, res) => {
         if (user) {
             if (user.interviewer) {
                 const token = createToken(user._id, 'interviewer');
-                res.cookie("interviewerjwt", token, {
-                    withCredentials: true,
-                    httpOnly: false,
-                    maxAge: maxAge * 1000
-                });
+                // res.cookie("interviewerjwt", token, {
+                //     withCredentials: true,
+                //     httpOnly: false,
+                //     maxAge: maxAge * 1000
+                // });
                 return res.status(200).json({
                     message: "Interviewer logged in successfully",
                     created: true,
@@ -90,11 +81,11 @@ module.exports.Login = async (req, res) => {
                 })
             } else {
                 const token = createToken(user._id, 'user');
-                res.cookie("jwt", token, {
-                    withCredentials: true,
-                    httpOnly: false,
-                    maxAge: maxAge * 1000
-                });
+                // res.cookie("jwt", token, {
+                //     withCredentials: true,
+                //     httpOnly: false,
+                //     maxAge: maxAge * 1000
+                // });
                 return res.status(200).json({
                     message: "User logged in successfully",
                     created: true,

@@ -14,7 +14,8 @@ const Datatable = () => {
 
   const fetchData = async () => {
     const { data } = await axios.get("api/admin/allInterviewers")
-    setData(data)
+    console.log(data)
+    setData(data.users)
   }
   
   useEffect( () => {
@@ -44,19 +45,20 @@ const Datatable = () => {
       blocked: user.blocked,
     }));
 
-  const blockButton = (params) => {
-    return (
-      <div className="cellStatus">
-        <Button style={{ textDecoration: "none" }} onClick={()=>{blockuser(params.row.id)}} >
-          {params.row.blocked &&
-          <div className="Suspended" >Blocked</div>
-        }{!params.row.blocked &&
-        <div className="Active">Actived</div>
-        }
-        </Button>
-      </div>
-    );
-  };
+    const blockButton = (params) => {
+      return (
+        <div className="cellStatus">
+          <Button style={{ textDecoration: "none" }} onClick={()=>{blockuser(params.row.id)}} >
+            {params.row.blocked &&
+            <div className="Suspended" >Blocked</div>
+          }{!params.row.blocked &&
+          <div className="Active">Actived</div>
+          }
+          </Button>
+        </div>
+      );
+    };
+
 
   const actionColumn = [
     {
@@ -82,6 +84,7 @@ const Datatable = () => {
       disableClickEventBubbling: true,
     },
   ];
+  
   return (
     <div className="datatable">
       <div className="datatableTitle">
