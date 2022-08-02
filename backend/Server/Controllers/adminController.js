@@ -69,10 +69,10 @@ module.exports.blockUser = async (req, res) => {
     }
 }
 
-module.exports.adminLogout = (req, res) => {
-    res.clearCookie("adminjwt")
-    res.json({ loggedOut: true })
-}
+// module.exports.adminLogout = (req, res) => {
+//     res.clearCookie("adminjwt")
+//     res.json({ loggedOut: true })
+// }
 
 
 

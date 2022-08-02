@@ -4,6 +4,7 @@ import { AnimatePresence } from 'framer-motion';
 import newpost from '../../Assets/Buttons/New post.svg'
 import Bell from '../../Assets/Buttons/bell.svg'
 import CreatePostModal from '../../Components/Forms/CreatePostModal/CreatePostModal'
+import ProfileEditModal from '../../Components/Forms/ProfileEditModal/ProfileEditModal';
 import { Stack, Avatar, Badge, Tooltip, Zoom, Menu, MenuItem, ListItemIcon } from '@mui/material'
 import { useNavigate } from 'react-router-dom';
 import { Logout } from '@mui/icons-material'
@@ -12,9 +13,12 @@ import './HomeHeader.css'
 function HomeHeader() {
     const navigate = useNavigate();
     const [showCreatePostModal, setShowCreatePostModal] = useState(false);
+    const [showProfileEditModal, setShowProfileEditModal] = useState(false);
     const [anchorElNav, setAnchorElNav] = useState(null);
     const createPostOpen = () => setShowCreatePostModal(true);
     const createPostClose = () => setShowCreatePostModal(false);
+    const profileEditOpen = () => setShowProfileEditModal(true);
+    const profileEditClose = () => setShowProfileEditModal(false);
     const user = JSON.parse(localStorage.getItem('user'))
     const open = Boolean(anchorElNav);
 
@@ -30,7 +34,7 @@ function HomeHeader() {
     return (
         <>
             <header className='User-Home-Header'>
-                <img src={logo} className='User-Home-Logo' alt="logo" />
+                <img src={logo} className='User-Home-logo' alt="logo" />
                 <div className='User-Home-emptydiv'></div>
                 <img src={newpost} className='User-Home-Newpost' alt="newpost" onClick={() => {
                     showCreatePostModal ? createPostClose() : createPostOpen()
@@ -99,7 +103,15 @@ function HomeHeader() {
                     transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                     anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                     onClose={() => setAnchorElNav(null)}>
-                    <MenuItem><Avatar />Profile</MenuItem>
+                    <MenuItem
+                        onClick={() => {
+                            console.log('profile edit',showProfileEditModal)
+                            showProfileEditModal ? profileEditClose() : profileEditOpen()
+                        }}
+                        // onClick={() => { console.log('profile edit') }}
+                    >
+                        <Avatar />Profile
+                    </MenuItem>
                     <MenuItem 
                         onClick={userLogout}
                     >
@@ -115,8 +127,8 @@ function HomeHeader() {
                 exitBeforeEnter={true}
                 onExitComplete={() => null}
             >
-                {console.log('pic', user.pic)}
                 {showCreatePostModal && <CreatePostModal handleClose={createPostClose} />}
+                {showProfileEditModal && <ProfileEditModal handleClose={profileEditClose} />}
             </AnimatePresence>
         </>
     )

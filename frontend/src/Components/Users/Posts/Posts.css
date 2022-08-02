@@ -1,0 +1,68 @@
+.scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+    overflow: scroll;
+}
+
+.scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.posts-header {
+    padding-bottom: .5rem;
+    border-radius: 2rem;
+    border-bottom: 1px solid #2D519C;
+}
+
+.post-creator-name {
+    font-family: 'Iceland', cursive;
+    color: #393131;
+    font-weight: 500;
+    line-height: 1rem;
+
+}
+
+.post-creator-about {
+    font-family: 'Iceland', cursive;
+    color: rgba(57, 49, 49, 0.8);
+    font-weight: 500;
+    line-height: .6rem;
+    padding: 3px;
+}
+
+.post-creator-join {
+    font-family: 'Iceland';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 29px;
+
+    cursor: pointer;
+    background: linear-gradient(128.08deg, #8558C3 -39.76%, #2D519C 116.22%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.post-creator-connect {
+    font-family: 'Iceland';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 35px;
+    line-height: 34px;
+    cursor: pointer;
+    padding-left: .5rem;
+
+    background: linear-gradient(100.2deg, #8746F1 18.67%, #4559BB 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.post-image {
+    width: 596px;
+    height: 350px;
+    border-radius: 1rem;
+}

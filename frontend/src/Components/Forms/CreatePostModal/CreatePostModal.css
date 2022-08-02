@@ -1,7 +1,6 @@
 .bg-white {
     background-color: #D9D9D9;
-    border: 1px solid #14FF8E;
-    box-shadow: 0px 4px 23px #14FF8E;
+    box-shadow: 0px 4px 23px #000;
 }
 
 .CreatePost-modal {
@@ -13,7 +12,7 @@
     align-items: center;
     position: absolute;
     float: left;
-    left: 25.56%;
+    left: 30%;
     top: 15%;
     transform: translate(-50%, -50%);
     height: 400px;

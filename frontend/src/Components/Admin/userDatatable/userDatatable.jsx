@@ -13,8 +13,11 @@ const Datatable = (props) => {
   const [data, setData] = useState([]);
 
   const fetchData = async () => {
-    const { data } = await axios.get("api/admin/allUsers")
-    console.log(data)
+    const { data } = await axios.get("api/admin/allUsers", {
+      headers: {
+        'adminToken': localStorage.getItem("adminToken")
+      }
+    })
     setData(data)
   }
   
@@ -23,11 +26,12 @@ const Datatable = (props) => {
   }, [])
 
   const blockuser = async (id)=>{
-    console.log("id", id)
-    const blockii = await axios.post(`api/admin/blockUser?id=${id}`,{},{withCredentials:true})
-    console.log("blockii", blockii)
+    await axios.post(`api/admin/blockUser?id=${id}`,{},{
+      headers: {
+        'adminToken': localStorage.getIten("adminToken")
+    }
+    },{withCredentials:true})
     const {data} = await axios.get("api/admin/allUsers")
-    console.log("data", data)
     setData(data);
   }
   const rows = data

@@ -99,7 +99,7 @@ function CreatePostModal({ handleClose }) {
             try {
             const res = await axios.post(`api/post/create`, values, {
                 headers: {
-                    'authToken': localStorage.getItem("token"),
+                    'token': localStorage.getItem("token"),
                     "Content-Type": "multipart/form-data"
                 }
             })

@@ -3,50 +3,65 @@ const Admin = require("../Models/adminModel");
 const jwt = require("jsonwebtoken");
 
 module.exports.checkUser = (req, res, next) => {
-    const token = req.cookies.jwt;
+    const token = req.header("token");
     if (token) {
         jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
             if (err) {
-                res.json({ status: false })
-                next();
+                res.json({ message:'Invalid Token',status: false })
             } else {
                 const user = await User.findById(decodedToken.id);
                 if (user) {
-                    res.json({ status: true, user: user.name })
-                } else {
-                    res.json({ status: false })
                     next();
+                } else {
+                    res.json({ message:"User Not Found", status: false })
                 }
             }
         });
     } else {
-        res.json({ status: false })
-        next();
+        res.json({ message: "No token", status: false })
     }
 }
 
-module.exports.checkInterviewer = (req, res, next) => {
-    const token = req.cookies.interviewerjwt;
+module.exports.checkAdmin = (req, res, next) => {
+    const token = req.header('adminToken')
     if (token) {
-        jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
+        jwt.verify(token,process.env.JWT_SECRET, async (err, decodedToken) => {
             if (err) {
-                res.json({ status: false })
-                next();
+                res.json({ message:'Invalid Token',status: false })
             } else {
-                const interviewer = await User.findById(decodedToken.id);
-                if (interviewer) {
-                    res.json({ status: true, interviewer: interviewer.name })
-                } else {
-                    res.json({ status: false })
+                const admin = await Admin.findById(decodedToken.id);
+                if (admin) {
                     next();
+                } else {
+                    res.json({ message:"Admin Not Found", status: false })
                 }
             }
-        });
-    } else {
-        res.json({ status: false })
-        next();
+        })
     }
 }
+
+// module.exports.checkInterviewer = (req, res, next) => {
+//     const token = req.cookies.interviewerjwt;
+//     if (token) {
+//         jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
+//             if (err) {
+//                 res.json({ status: false })
+//                 next();
+//             } else {
+//                 const interviewer = await User.findById(decodedToken.id);
+//                 if (interviewer) {
+//                     res.json({ status: true, interviewer: interviewer.name })
+//                 } else {
+//                     res.json({ status: false })
+//                     next();
+//                 }
+//             }
+//         });
+//     } else {
+//         res.json({ status: false })
+//         next();
+//     }
+// }
 
 
 

@@ -27,7 +27,14 @@ module.exports.CreatePost = async (req, res) => {
 module.exports.GetAll = async (req, res) => {
     try {
         const posts = await GetAllPostService();
-        return res.status(200).json(posts);
+        if (posts.length === 0) {
+            res.send({ message: "No posts found" });
+        } else {
+            posts.sort((dateA, dateB) => {
+                return dateB.createdAt - dateA.createdAt;
+            });
+            return res.status(200).json(posts);
+        }
     } catch (error) {
         console.log(error)
     }
