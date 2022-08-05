@@ -18,7 +18,6 @@ const Datatable = () => {
         'adminToken': localStorage.getItem("adminToken")
       }
     })
-    console.log(data)
     setData(data.users)
   }
   

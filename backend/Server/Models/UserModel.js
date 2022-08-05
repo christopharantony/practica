@@ -37,6 +37,12 @@ const userSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    connections:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'User'
+        }
+    ],
     domain: String,
     company: String
 },

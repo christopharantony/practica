@@ -105,10 +105,9 @@ function HomeHeader() {
                     onClose={() => setAnchorElNav(null)}>
                     <MenuItem
                         onClick={() => {
-                            console.log('profile edit',showProfileEditModal)
+                            setAnchorElNav(null);
                             showProfileEditModal ? profileEditClose() : profileEditOpen()
                         }}
-                        // onClick={() => { console.log('profile edit') }}
                     >
                         <Avatar />Profile
                     </MenuItem>

@@ -11,6 +11,7 @@ module.exports.checkUser = (req, res, next) => {
             } else {
                 const user = await User.findById(decodedToken.id);
                 if (user) {
+                    req.user = user;
                     next();
                 } else {
                     res.json({ message:"User Not Found", status: false })

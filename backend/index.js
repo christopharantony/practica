@@ -2,8 +2,8 @@ const express = require("express")
 const cookieParser = require("cookie-parser")
 const morgan = require("morgan");
 const cors = require("cors");
-const { notfound, errorHandler } = require("./Server/Middlewares/ErrorMiddleware");
 const app = express()
+const { notfound, errorHandler } = require("./Server/Middlewares/ErrorMiddleware");
 
 require("./Server/Database/Database")()
 require("dotenv").config();
@@ -12,7 +12,7 @@ const port = process.env.PORT || 5000
 
 app.use(cors({
     origin: ["http://localhost:3000"],
-    method: ["GET", "POST"],
+    method: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
 }))
 
@@ -22,6 +22,7 @@ app.use(cookieParser())
 
 app.use("/api/admin", require("./Server/Routes/adminRoutes"))
 app.use("/api/post", require("./Server/Routes/postRoutes"))
+app.use("/api/message", require("./Server/Routes/messageRoutes"))
 app.use("/api", require("./Server/Routes/userRoutes"))
 
 app.use(notfound)

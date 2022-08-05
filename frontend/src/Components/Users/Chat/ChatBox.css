@@ -1,0 +1,36 @@
+.chat-box {
+    background: rgba(217, 217, 217, 0.45);
+    box-shadow: 0px 0px 10px #2770B0;
+    border-radius: 5px;
+    height: 70vh;
+}
+
+.chat-header {
+    font-family: 'Iceland';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 31px;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 1rem;
+}
+
+.chats {
+    display: flex;
+}
+
+.chatwith-user-name {
+    font-family: 'Iceland';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2rem;
+    width: 10rem;
+    line-height: 31px;
+    color: #FFFFFF;
+    /* padding-left: 1rem; */
+    margin: 0 1rem;
+    border-bottom: 1px solid #653eff;
+    border-radius: 2rem 0;
+    cursor: pointer;
+}

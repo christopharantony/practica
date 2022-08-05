@@ -3,26 +3,49 @@ import { useEffect } from "react";
 import axios from "../../../axiosInstance";
 import { useState } from "react";
 import { Grid, Card, CardContent, IconButton } from "@mui/material";
+import { ToastContainer, toast } from 'react-toastify';
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import MessageIcon from "@mui/icons-material/Message";
 import Plus from "../../../Assets/Buttons/Plus.svg";
 import "./Posts.css";
 function Posts() {
     const [posts, setPosts] = useState([]);
-
     const getAllPosts = async () => {
         const { data } = await axios.get("api/post/all", {
             headers: {
                 token: localStorage.getItem("token"),
             },
         });
-        console.log("Post Data =>", data);
         setPosts(data);
     };
+
+    const generateError = (error) =>
+        toast.error(error, {
+            position: "bottom-right"
+        })
+
+    const generateSuccess = (success) =>
+        toast.success(success, {
+            position: "bottom-right"
+        })
 
     useEffect(() => {
         getAllPosts();
     }, []);
+
+    const handleConnect = async (id) => {
+        const { data } = await axios.post('api/connect', { id }, {
+            headers: {
+                token: localStorage.getItem("token")
+            }
+        })
+        if (data.error) {
+            generateError(data.error)
+        } else if (data.created) {
+            generateSuccess('Connected')
+        }
+    }
+
     return (
         <Box
             className="scrollbar-hidden"
@@ -53,7 +76,7 @@ function Posts() {
                                 <Grid container>
                                     <Grid item xs={1}>
                                         <Box>
-                                            <Avatar src={post.createdBy.pic}></Avatar>
+                                            <Avatar sx={{position:'inherit'}} src={post.createdBy.pic}></Avatar>
                                         </Box>
                                     </Grid>
                                     <Grid item xs={8}>
@@ -73,7 +96,7 @@ function Posts() {
                                             </Box>
                                             <Box width="100%">
                                                 <p className="post-creator-about">
-                                                    { post.createdBy.interviewer ?
+                                                    {post.createdBy.interviewer ?
                                                         post.createdBy.company
                                                         : post.createdBy.domain
                                                     }
@@ -103,12 +126,12 @@ function Posts() {
                             <Box className="post-footer">
                                 <Grid container>
                                     <Grid item xs={2}>
-                                        <IconButton>
-                                            <ThumbUpOffAltIcon />
+                                        <IconButton  sx={{position:'inherit'}} disableRipple={true} >
+                                            <ThumbUpOffAltIcon  />
                                         </IconButton>
                                     </Grid>
                                     <Grid item xs={6}>
-                                        <IconButton>
+                                        <IconButton  sx={{position:'inherit'}} disableRipple={true}>
                                             <MessageIcon />
                                         </IconButton>
                                     </Grid>
@@ -116,6 +139,9 @@ function Posts() {
                                         <Box
                                             sx={{
                                                 display: "flex",
+                                            }}
+                                            onClick={() => {
+                                                handleConnect(post.createdBy._id)
                                             }}
                                         >
                                             <img src={Plus} alt="Plus" className="post-plus" />
@@ -127,6 +153,7 @@ function Posts() {
                         </CardContent>
                     </Card>
                 ))}
+                <ToastContainer />
         </Box>
     );
 }

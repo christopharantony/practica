@@ -45,6 +45,13 @@
     color: transparent;
 }
 
+.post-description{
+    font-family: 'Iceland', cursive;
+    color: rgba(57, 49, 49, 0.8);
+    font-weight: 500;
+    padding: 3px;
+}
+
 .post-creator-connect {
     font-family: 'Iceland';
     font-style: normal;

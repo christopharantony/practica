@@ -5,7 +5,6 @@ import noimage from '../../../Assets/Images/Big No Image.png'
 import CloseIcon from '@mui/icons-material/Close';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from '../../../axiosInstance'
-// import { useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form'
 import { Grid } from '@mui/material'
 import './CreatePostModal.css'
@@ -43,52 +42,12 @@ function CreatePostModal({ handleClose }) {
         toast.success(success, {
             position: "bottom-right"
         })
-    // let postImage = '';
-    // const navigate = useNavigate();
-    // const [values, setValues] = useState({
-    //     image: "",
-    //     description: "",
-    // });
-
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault()
-    //     console.log('submit', values)
-    //     try {
-    //         if (values.email === "" || values.password === "") {
-    //             generateError("Please fill all fields")
-    //             return;
-    //         }
-    //         const { data } = await axios.post('api/login', {
-    //             ...values
-    //         }, {
-    //             withCredentials: true
-    //         })
-    //         if (data.error) {
-    //             generateError("Invalid Email or Password")
-    //         } else {
-    //             navigate('/home')
-    //             handleClose()
-    //         }
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
-
-    // const imageHandler = (e) => {
-    //     postImage = e.target.files[0]
-    //     console.log('postIMage',postImage);
-    // };
     const handlePost = async (data) => {
         const user = JSON.parse(localStorage.getItem('user'))
         const { description } = data
 
         let values = new FormData()
         if (description) {
-            console.log("description", description)
-            console.log("image", image)
-            console.log("user", user._id)
-
             values.append('image', image)
             values.append('description', description)
             values.append('createdBy', user._id)

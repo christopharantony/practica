@@ -1,11 +1,21 @@
-import React from 'react'
+// import React from 'react'
 import HomeHeader from '../../../Layout/HomeHeader/HomeHeader';
 import Leftsection from '../../../Components/Users/Leftsection/Leftsection';
 import Posts from '../../../Components/Users/Posts/Posts';
+import Chat from '../../../Components/Users/Chat/ChatBox';
 import { Grid,Box } from '@mui/material';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Home.css';
 
 function Home() {
+    const navigate = useNavigate();
+    useEffect(()=>{
+        const token = localStorage.getItem('token');
+        const user = localStorage.getItem('user');
+        if (!token && user){
+            navigate('/')
+        }})
     return (
         <div className='User-Home'>
             <HomeHeader />
@@ -17,9 +27,7 @@ function Home() {
                     <Posts />
                 </Grid>
                 <Grid item xs={12} md={3}>
-                    <Box bgcolor='success.light' mt={6} h={12} p={2} >
-                        Messages
-                    </Box>
+                    <Chat />
                 </Grid>
             </Grid>
         </div>
