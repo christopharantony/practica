@@ -6,9 +6,11 @@ import { Grid, Card, CardContent, IconButton } from "@mui/material";
 import { ToastContainer, toast } from 'react-toastify';
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import MessageIcon from "@mui/icons-material/Message";
+import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import Plus from "../../../Assets/Buttons/Plus.svg";
 import "./Posts.css";
 function Posts() {
+    const user = JSON.parse(localStorage.getItem("user"));
     const [posts, setPosts] = useState([]);
     const getAllPosts = async () => {
         const { data } = await axios.get("api/post/all", {
@@ -46,6 +48,25 @@ function Posts() {
         }
     }
 
+    const handleChat = async(id) => {
+        const Object = {
+            senderId: user._id,
+            receiverId: id,
+        };
+        const config ={
+            headers: {
+                token: localStorage.getItem("token")
+            }
+        }
+        const { data } = await axios.post('api/chat', Object, config)
+        console.log(data)
+        if (data.message === "Chat already exists") {
+            generateError("Already connected")
+        } else if (data.created) {
+            generateSuccess('Chat created')
+        }
+    };
+
     return (
         <Box
             className="scrollbar-hidden"
@@ -76,7 +97,7 @@ function Posts() {
                                 <Grid container>
                                     <Grid item xs={1}>
                                         <Box>
-                                            <Avatar sx={{position:'inherit'}} src={post.createdBy.pic}></Avatar>
+                                            <Avatar sx={{ position: 'inherit' }} src={post.createdBy.pic}></Avatar>
                                         </Box>
                                     </Grid>
                                     <Grid item xs={8}>
@@ -126,34 +147,59 @@ function Posts() {
                             <Box className="post-footer">
                                 <Grid container>
                                     <Grid item xs={2}>
-                                        <IconButton  sx={{position:'inherit'}} disableRipple={true} >
-                                            <ThumbUpOffAltIcon  />
+                                        <IconButton sx={{ position: 'inherit' }} disableRipple={true} >
+                                            <ThumbUpOffAltIcon />
                                         </IconButton>
                                     </Grid>
                                     <Grid item xs={6}>
-                                        <IconButton  sx={{position:'inherit'}} disableRipple={true}>
+                                        <IconButton sx={{ position: 'inherit' }} disableRipple={true}>
                                             <MessageIcon />
                                         </IconButton>
                                     </Grid>
                                     <Grid item xs={4}>
-                                        <Box
-                                            sx={{
-                                                display: "flex",
-                                            }}
-                                            onClick={() => {
-                                                handleConnect(post.createdBy._id)
-                                            }}
-                                        >
-                                            <img src={Plus} alt="Plus" className="post-plus" />
-                                            <h2 className="post-creator-connect">Connect</h2>
-                                        </Box>
+                                        {!(
+                                            user.connections.includes(post.createdBy._id) ||
+                                            post.createdBy._id === user._id
+                                        ) ? (
+                                            <Box
+                                                sx={{
+                                                    display: "flex",
+                                                    justifyContent: "end"
+                                                }}
+                                                onClick={() => {
+                                                    console.log(post.createdBy._id)
+                                                }}
+                                            >
+                                                <IconButton 
+                                                    sx={{ position: 'inherit', pr: 5 }} 
+                                                    disableRipple={true} 
+                                                    onClick={() => handleChat(post.createdBy._id)}
+                                                >
+                                                    <SendRoundedIcon />
+                                                </IconButton>
+                                            </Box>
+                                        ) : (
+                                            !(post.createdBy._id === user._id) && (
+                                                <Box
+                                                    sx={{
+                                                        display: "flex",
+                                                    }}
+                                                    onClick={() => {
+                                                        handleConnect(post.createdBy._id)
+                                                    }}
+                                                >
+                                                    <img src={Plus} alt="Plus" className="post-plus" />
+                                                    <h2 className="post-creator-connect">Connect</h2>
+                                                </Box>
+                                            )
+                                        )}
                                     </Grid>
                                 </Grid>
                             </Box>
                         </CardContent>
                     </Card>
                 ))}
-                <ToastContainer />
+            <ToastContainer />
         </Box>
     );
 }

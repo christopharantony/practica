@@ -1,0 +1,90 @@
+.Chat-modal {
+    width: clamp(50%, 600px, 90%);
+    height: min(50%, 350px);
+
+    margin: auto;
+    padding: 0 2rem;
+    border-radius: 12px;
+    /* display: flex; */
+    /* flex-direction: column; */
+    align-items: center;
+    position: absolute;
+    float: left;
+    left: 20%;
+    top: 17%;
+    transform: translate(-50%, -50%);
+    /* height: 550px; */
+    height: 510px;
+}
+
+.Chat-modal>.Close-button {
+    cursor: pointer;
+    margin-left: 37rem;
+    padding-top: 1rem;
+    font-size: 2rem;
+    
+}
+
+.Chat-Text{
+    color: white;
+    font-family: 'Iceland', cursive !important;
+    font-size: 1.1rem !important;
+    line-height: 2rem !important;
+    padding-bottom: 8rem;
+}
+
+
+
+.Parent-Chat{
+    display: flex;
+    flex-direction: row;
+    
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 90%;
+}
+
+.Chat-Image{
+    width:19rem;
+    /* padding-bottom: 5rem; */
+}
+.New-Message {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid gray;
+    font-family: 'Iceland', cursive;
+    font-size: 1.4rem;
+    margin-bottom: .8rem;
+    width: 95%;
+    background-color: #fff;
+}
+
+
+
+
+.UserChat-Form{
+    padding-bottom: 5rem;
+    padding-right: 3rem;
+}
+
+.Submit-Button {
+    background: #2E3A8B;
+    /* border: 1px solid #14FF8E; */
+    border: 0;
+    border-radius: 0.5rem;
+    width: 17rem;
+    color: #fff;
+    font-family: 'Iceland', cursive;
+    font-size: 1.3rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.Submit-Button:hover {
+    filter: drop-shadow(0px 4px 20px #2E3A8B)
+}
+
+.Toastify{
+    font-size: 1rem;
+}
