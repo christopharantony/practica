@@ -4,6 +4,7 @@ import './App.css';
 import Login from './Pages/Admin/Login/AdminLogin';
 // import AdminHome from './Pages/Admin/home/Home';
 import Home from './Pages/User/Home/Home'
+import Message from './Pages/User/Message/Message';
 import UserList from './Pages/Admin/userList/userList';
 import InterviewerList from './Pages/Admin/interviewerList/InterviewerList'
 import Single from './Pages/Admin/single/Single';
@@ -19,6 +20,7 @@ function App() {
           <Route path='/' element={<Landing />} />
           <Route path='/about' element={<About />} />
           <Route path='/home' element={<Home />} />
+          <Route path='/message' element={<Message />} />
         </Routes>
       </BrowserRouter>
       <div className="app">

@@ -1,0 +1,37 @@
+.Chat-modal {
+    margin: auto;
+    padding: 0 2rem;
+    border-radius: 12px;
+    align-items: center;
+    height: 510px;
+}
+
+.New-Message {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid gray;
+    font-family: 'Iceland', cursive;
+    font-size: 1.4rem;
+    margin-bottom: .8rem;
+    width: 95%;
+    background-color: #fff;
+}
+
+.Chat-modal>.Close-button {
+    cursor: pointer;
+    margin-left: 33rem;
+    padding-top: 1rem;
+    font-size: 2rem;
+    
+}
+
+.chatModalMessages{
+    -ms-overflow-style: none;
+    scrollbar-width: none; 
+    overflow: scroll;
+    width: 100%;
+}
+
+.chatModalMessages::-webkit-scrollbar {
+    display: none;
+}

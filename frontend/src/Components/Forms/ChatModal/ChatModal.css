@@ -88,3 +88,14 @@
 .Toastify{
     font-size: 1rem;
 }
+
+.chatModalMessages{
+    -ms-overflow-style: none;
+    scrollbar-width: none; 
+    overflow: scroll;
+    width: 100%;
+}
+
+.chatModalMessages::-webkit-scrollbar {
+    display: none;
+}

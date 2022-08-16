@@ -32,7 +32,7 @@
 .gradient {
     background: linear-gradient(180deg, #360D70, #266bac);
     border: 1px solid #14FF8E;
-    box-shadow: 0px 4px 23px #14FF8E;
+    box-shadow: 0px 4px 10px #14FF8E;
 }
 
 

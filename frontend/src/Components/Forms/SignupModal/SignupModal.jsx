@@ -91,9 +91,6 @@ function SignupModal({ handleClose }) {
                     {
                         ...values,
                         interviewer,
-                    },
-                    {
-                        withCredentials: true,
                     }
                 );
                 if (data.error === "User already exists") {

@@ -1,20 +1,20 @@
 import HomeHeader from '../../../Layout/HomeHeader/HomeHeader';
 import Leftsection from '../../../Components/Users/Leftsection/Leftsection';
-import Posts from '../../../Components/Users/Posts/Posts';
+import Messages from '../../../Components/Users/Chat/Chat';
 import Chat from '../../../Components/Users/Chat/ChatBox';
 import { Grid } from '@mui/material';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Home.css';
 
-function Home() {
+function Message() {
     const navigate = useNavigate();
-    useEffect(()=>{
+    useEffect(() => {
         const token = localStorage.getItem('token');
         const user = localStorage.getItem('user');
-        if (!token && user){
+        if (!token && user) {
             navigate('/')
-        }})
+        }
+    })
     return (
         <div className='User-Home'>
             <HomeHeader />
@@ -23,7 +23,7 @@ function Home() {
                     <Leftsection />
                 </Grid>
                 <Grid item xs={12} md={6}>
-                    <Posts />
+                    <Messages />
                 </Grid>
                 <Grid item xs={12} md={3}>
                     <Chat />
@@ -33,4 +33,4 @@ function Home() {
     )
 }
 
-export default Home
+export default Message
