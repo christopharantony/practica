@@ -1,4 +1,4 @@
-import React from "react";
+import { Avatar } from "@mui/material";
 import "./Leftsection.css";
 function Leftsection() {
     const user = JSON.parse(localStorage.getItem('user'))
@@ -7,7 +7,7 @@ function Leftsection() {
             <div className="User-Home-container">
                 <div className="User-Home-box"></div>
                 <div className="User-Home-content">
-                    <img
+                    <Avatar
                         className="Leftsection-Avatar"
                         // src="https://i.pravatar.cc/300"
                         src={user.pic}

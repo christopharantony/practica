@@ -5,8 +5,8 @@
 }
 
 .User-Home-box{
-    height: 200px;
-    width: 180px;
+    height: 410px;
+    width: 260px;
     position: relative;
     background: rgba(255, 255, 255, 0.1);
     /* z-index: 1; */
@@ -23,18 +23,18 @@
 
 .Leftsection-Avatar{
     position: absolute;
-    top: -180px;
-    left: 50px;
+    top: -400px;
+    left: 87px;
     border-radius: 50%;
-    width: 75px;
-    height: 75px;
-    box-shadow: 2px 1px 10px rgba(0, 0, 0, 15);
+    width: 80px;
+    height: 80px;
+    box-shadow: 2px 1px 10px rgb(0 0 0);
 }
 
 .Leftsection-Name{
-    position:absolute;
-    left: 60px;
-    top: -110px;
+    position: absolute;
+    left: 100px;
+    top: -310px;
     font-weight: 100;
     color: #baafbd;
 }
@@ -66,8 +66,8 @@
     /* text-align: center; */
     /* padding: 0.5em; */
     position: relative;
-    left: 30px;
-    top: -85px;
+    left: 38px;
+    top: -289px;
 }
 
 .User-Home-value{

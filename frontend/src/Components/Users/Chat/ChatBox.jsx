@@ -9,13 +9,14 @@ import './ChatBox.css'
 import ChatList from '../ChatList/ChatList';
 
 function ChatBox() {
-    const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
-    // const [ showChatModal, setShowChatModal ] = useState(false);
+    const { user, chats, setChats } = ChatState();
     const [ fetchAgain, setFetchAgain ] = useState(false);
     const [ loggedUser, setLoggedUser ] = useState();
+    
+    // const [ showChatModal, setShowChatModal ] = useState(false);
     // const chatOpen = () => setShowChatModal(true);
     // const chatClose = () => setShowChatModal(false);
-    const [chatList, setChatList] = useState([]);
+    // const [chatList, setChatList] = useState([]);
 
     const fetchChats = async () => {
         const user = JSON.parse(localStorage.getItem('user'));
@@ -26,10 +27,7 @@ function ChatBox() {
                 }
             }
             const { data } = await axios.get(`/api/chat/${user?._id}`, config);
-            console.log('chatBox line 29',data);
             setChats(data);
-            // const response = await axios.get(`/api/chat/list/${user._id}`, config);
-            // setChatList(response.data);
         } catch (error) {
             console.log(error);
         }
