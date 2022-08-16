@@ -15,7 +15,9 @@ module.exports.CreateMessageService = async (sender, content, chatId) => {
 
 module.exports.GetMessagesService = async (chatId) => {
     try {
-        const messages = await messageDb.find({ chatId });
+        const messages = await messageDb.find({
+            chatId
+        });
         return messages;
     } catch (error) {
         console.log(error)

@@ -14,9 +14,9 @@ module.exports.CreateMessage = async(req, res) => {
 
 module.exports.GetMessages = async(req, res) => {
     try {
-        const { chatId } = req.params;
-        const messages = await GetMessagesService(chatId);
-        return res.status(200).json({messages,created:true});
+        const { id } = req.params;
+        const messages = await GetMessagesService(id);
+        return res.status(200).json(messages);
     } catch (error) {
         console.log(error.message)
         res.status(500).json({message: "Something went wrong", error})

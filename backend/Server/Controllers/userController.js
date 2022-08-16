@@ -204,3 +204,9 @@ module.exports.UserConnect = async (req, res) => {
         }
     }
 } 
+
+module.exports.UserDetails = async (req, res) => {
+    const userId = req.params.id;
+    const user = await userByIdService(userId);
+    return res.status(200).json(user);
+}
