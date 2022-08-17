@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChatState } from "../../../Context/ChatProvider";
 import CloseIcon from "@mui/icons-material/Close";
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
@@ -15,6 +15,7 @@ var socket, selectedChatCompare;
 function Chat() {
     const navigate = useNavigate();
     const location = useLocation();
+    const scroll = useRef();
     const currentUser = JSON.parse(localStorage.getItem('user'));
     const {selectedChat, setSelectedChat } = ChatState();
     const [messages, setMessages] = useState([]);
@@ -113,6 +114,10 @@ function Chat() {
             }
         })
     })
+
+    useEffect(() => {
+        scroll.current?.scrollIntoView({ behavior: "smooth" });
+    },[messages])
     return (
 
             <div className="Chat-modal bg-white">
@@ -123,7 +128,7 @@ function Chat() {
                     <Box sx={{ height: 380 }} className="chatModalMessages" >
                         {
                             messages && messages.map((data, index) => (
-                                <Box key={index}>
+                                <Box ref={scroll} key={index}>
                                     <Messages message={data} own={data.sender === currentUser._id} />
                                 </Box>
                             ))
@@ -134,6 +139,7 @@ function Chat() {
                         <input
                             className="New-Message"
                             placeholder='Write something...'
+                            value={newMessage}
                             onChange={(e) => setNewMessage(e.target.value)}
                         >
                         </input>
