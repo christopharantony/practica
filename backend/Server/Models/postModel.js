@@ -34,6 +34,9 @@ const postSchema = new mongoose.Schema(
                 comment: {
                     type: String,
                 },
+                createdAt: {
+                    type: Date
+                }
             },
         ],
     },

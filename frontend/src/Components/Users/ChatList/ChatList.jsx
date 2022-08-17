@@ -13,8 +13,6 @@ function ChatList( { chat, currentUser } ) {
             const fetchUser = async () => {
                 try {
                     const { data } = await axios.get(`/api/user/${friendId}`);
-                    console.log('user',data)
-                    console.log('chat',friendId)
                     setUser(data);
                 } catch (error) {
                     console.log(error);

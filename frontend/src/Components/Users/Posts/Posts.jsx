@@ -1,17 +1,25 @@
-import { Box, Avatar } from "@mui/material";
+import { Box, Avatar, Typography, Button, TextField } from "@mui/material";
+import { Grid, Card, CardContent, IconButton } from "@mui/material";
 import { useEffect } from "react";
 import axios from "../../../axiosInstance";
 import { useState } from "react";
-import { Grid, Card, CardContent, IconButton } from "@mui/material";
 import { ToastContainer, toast } from 'react-toastify';
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import MessageIcon from "@mui/icons-material/Message";
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import Plus from "../../../Assets/Buttons/Plus.svg";
+import { useNavigate } from "react-router-dom";
 import "./Posts.css";
 function Posts() {
+    const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem("user"));
     const [posts, setPosts] = useState([]);
+    const [like, setLike] = useState(false);
+    const [commentStatus, setCommentStatus] = useState(false);
+    const [postId, setPostId] = useState("");
+    const [comment, setComment] = useState("");
+
     const getAllPosts = async () => {
         const { data } = await axios.get("api/post/all", {
             headers: {
@@ -48,24 +56,66 @@ function Posts() {
         }
     }
 
-    const handleChat = async(id) => {
+    const handleChat = async (id) => {
         const Object = {
             senderId: user._id,
             receiverId: id,
         };
-        const config ={
+        const config = {
             headers: {
                 token: localStorage.getItem("token")
             }
         }
         const { data } = await axios.post('api/chat', Object, config)
-        console.log(data)
         if (data.message === "Chat already exists") {
-            generateError("Already connected")
+            const chat = data.chat;
+            navigate("/message", { state: { chat }})
         } else if (data.created) {
             generateSuccess('Chat created')
         }
     };
+
+    const handleLike = async (id) => {
+        const value = !like;
+        setLike(value);
+        const body = {
+            likes: value,
+            postId: id
+        }
+        const config = {
+            headers: {
+                token: localStorage.getItem("token")
+            }
+        }
+
+        await axios.post('api/post/posts/like', body, config);
+        const { data } = await axios.get('api/post/all', config);
+        setPosts(data)
+    }
+
+    const handleCommentStatus = async (id) => {
+        const value = !commentStatus;
+        setCommentStatus(value);
+        setPostId(id);
+    }
+
+    const handleComment = async (id) => {
+        const body = {
+            comment,
+            postId: id
+        }
+        const config = {
+            headers: {
+                token: localStorage.getItem("token")
+            }
+        }
+
+        await axios.post('api/post/posts/comment', body, config);
+        const { data } = await axios.get('api/post/all', config);
+        setPosts(data)
+        const value = !commentStatus;
+        setCommentStatus(value);
+    }
 
     return (
         <Box
@@ -88,7 +138,7 @@ function Posts() {
                     >
                         <CardContent
                             sx={{
-                                height: "28rem",
+                                height: "30rem",
                                 borderBottom: 1,
                                 borderColor: "rgba(0, 0, 0, 0.38)",
                             }}
@@ -147,12 +197,21 @@ function Posts() {
                             <Box className="post-footer">
                                 <Grid container>
                                     <Grid item xs={2}>
-                                        <IconButton sx={{ position: 'inherit' }} disableRipple={true} >
-                                            <ThumbUpOffAltIcon />
+                                        <IconButton sx={{ position: 'inherit' }} disableRipple={true} onClick={() => {
+                                            handleLike(post._id)
+                                        }} >
+                                            {post.likes.includes(user._id) ? (
+                                                <ThumbUpAltIcon sx={{ fontSize: 30, color: "blue" }} />
+                                            ) : (
+                                                <ThumbUpOffAltIcon />
+                                            )
+                                            }
                                         </IconButton>
                                     </Grid>
                                     <Grid item xs={6}>
-                                        <IconButton sx={{ position: 'inherit' }} disableRipple={true}>
+                                        <IconButton sx={{ position: 'inherit' }} disableRipple={true} onClick={() => {
+                                            handleCommentStatus(post._id)
+                                        }}>
                                             <MessageIcon />
                                         </IconButton>
                                     </Grid>
@@ -170,9 +229,9 @@ function Posts() {
                                                     console.log(post.createdBy._id)
                                                 }}
                                             >
-                                                <IconButton 
-                                                    sx={{ position: 'inherit', pr: 5 }} 
-                                                    disableRipple={true} 
+                                                <IconButton
+                                                    sx={{ position: 'inherit', pr: 5 }}
+                                                    disableRipple={true}
                                                     onClick={() => handleChat(post.createdBy._id)}
                                                 >
                                                     <SendRoundedIcon />
@@ -196,7 +255,100 @@ function Posts() {
                                     </Grid>
                                 </Grid>
                             </Box>
+                            <Box
+                                sx={{
+                                    width: "100%",
+                                    height: 22,
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                }}
+                            >
+                                <Typography
+                                    color="text.secondary"
+                                    sx={{ ml: 2, fontWeight: 500 }}
+                                >
+                                    {post.likes.length} likes
+                                </Typography>
+                                <Typography
+                                    color="text.secondary"
+                                    sx={{ mr: 2, fontWeight: 500 }}
+                                >
+                                    {post.comments.length} comments
+                                </Typography>
+                            </Box>
                         </CardContent>
+                        {commentStatus && post._id === postId && (
+                            <>
+                                <CardContent
+                                    sx={{ display: "flex", justifyContent: "space-around" }}
+                                >
+                                    <Box sx={{ width: "75%" }}>
+                                        <TextField
+                                            size="small"
+                                            onChange={(e) => setComment(e.target.value)}
+                                            sx={{ m: "0 auto" }}
+                                            fullWidth
+                                            placeholder="Add a comment..."
+                                        />
+                                    </Box>
+                                    <Box>
+                                        <Button
+                                            size="small"
+                                            onClick={() => handleComment(post._id)}
+                                            variant="contained"
+                                            sx={{ m: "2.5px auto" }}
+                                        >
+                                            Post
+                                        </Button>
+                                    </Box>
+                                </CardContent>
+                                <CardContent>
+                                    {post.comments
+                                        .map((data) => data)
+                                        .map((comment) => comment)
+                                        .reverse()
+                                        .map((text) => (
+                                            <Box sx={{ display: "flex", width: "100%" }}>
+                                                <Box sx={{ width: "10%", mt: 1.2 }}>
+                                                    <Avatar
+                                                        src={text.commentedBy.pic}
+                                                        sx={{ height: 38, width: 38 }}
+                                                    ></Avatar>
+                                                </Box>
+                                                <Box
+                                                    sx={{
+                                                        width: "90%",
+                                                        backgroundColor: "#f2f0f0",
+                                                        borderRadius: "15px",
+                                                        height: "auto",
+                                                        mt: 1,
+                                                    }}
+                                                >
+                                                    <Typography
+                                                        fontSize="0.9rem"
+                                                        fontWeight={500}
+                                                        marginLeft={1}
+                                                        marginTop={1}
+                                                    >
+                                                        {text.commentedBy.name}
+                                                    </Typography>
+                                                    <Typography fontSize="0.7rem" marginLeft={1}>
+                                                        {text.commentedBy?.interviewer ? text.commentedBy?.company : text.commentedBy?.domain}
+                                                    </Typography>
+                                                    <Typography
+                                                        fontSize="0.9rem"
+                                                        fontWeight={500}
+                                                        marginLeft={1}
+                                                        marginTop={1}
+                                                    >
+                                                        {text.comment}
+                                                    </Typography>
+                                                </Box>
+                                            </Box>
+                                        ))}
+                                </CardContent>
+                            </>
+                        )}
                     </Card>
                 ))}
             <ToastContainer />

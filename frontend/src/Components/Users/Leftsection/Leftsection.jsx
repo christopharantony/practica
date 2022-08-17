@@ -8,8 +8,10 @@ function Leftsection() {
                 <div className="User-Home-box"></div>
                 <div className="User-Home-content">
                     <Avatar
+                        
                         className="Leftsection-Avatar"
                         // src="https://i.pravatar.cc/300"
+                        sx={{ width: "80px", height: "80px" }}
                         src={user.pic}
                         alt="avatar"
                     />
