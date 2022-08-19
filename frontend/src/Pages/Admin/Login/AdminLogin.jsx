@@ -28,8 +28,6 @@ function AdminLogin() {
         try {
             const {data} = await axios.post("api/admin/login", {
                 ...values
-            },{
-                withCredentials:true
             });
             if (data.created){
                 localStorage.setItem("adminToken",data.token);

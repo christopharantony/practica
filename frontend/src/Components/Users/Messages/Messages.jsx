@@ -1,6 +1,9 @@
 import { Box, Grid, Typography } from "@mui/material"
+import dayjs from "dayjs";
 
 function Messages({ message, own}) {
+    var relativeTime = require('dayjs/plugin/relativeTime')
+    dayjs.extend(relativeTime)
     const ownStyle = { textAlign:"start", marginTop:2 ,width: '100%'  }
     const otherStyle = { textAlign:"end", marginTop:2 ,width: '100%'  }
     return (
@@ -17,7 +20,7 @@ function Messages({ message, own}) {
                     }}>
                     {message?.content}
                 </span>
-                <Typography fontSize={10.5} sx={{ ml: 1 }}>{message.createdAt}</Typography>
+                <Typography fontSize={10.5} sx={{ ml: 1 }}>{dayjs(message.createdAt).fromNow()}</Typography>
             </Box>
         </Grid>
     )

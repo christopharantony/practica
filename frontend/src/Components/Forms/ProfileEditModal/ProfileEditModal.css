@@ -5,6 +5,7 @@
     margin: auto;
     /* padding: 0 2rem; */
     border-radius: 12px;
+    z-index: 2;
     align-items: center;
     position: absolute;
     float: left;

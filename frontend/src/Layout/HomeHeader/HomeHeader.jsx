@@ -39,7 +39,7 @@ function HomeHeader() {
                 <img src={newpost} className='User-Home-Newpost' alt="newpost" onClick={() => {
                     showCreatePostModal ? createPostClose() : createPostOpen()
                 }} />
-                <Tooltip
+                {/* <Tooltip
                     title="Notifications"
                     ransitionComponent={Zoom}
                     enterDelay={500}
@@ -48,7 +48,7 @@ function HomeHeader() {
                     <Badge color="error" badgeContent={0}>
                         <img src={Bell} className='User-Home-Bell' alt="bell" />
                     </Badge>
-                </Tooltip>
+                </Tooltip> */}
                 <Stack direction={'row'} spacing={2} >
                     <Tooltip
                         TransitionComponent={Zoom}
