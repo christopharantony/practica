@@ -1,5 +1,4 @@
 const express = require("express")
-const cookieParser = require("cookie-parser")
 const morgan = require("morgan");
 const cors = require("cors");
 const app = express()
@@ -14,13 +13,15 @@ app.use(cors());
 
 app.use(morgan("tiny"))
 app.use(express.json());
-app.use(cookieParser())
 
 app.use("/api/admin", require("./Server/Routes/adminRoutes"))
+app.use("/api/interview", require("./Server/Routes/interviewRoutes"))
 app.use("/api/post", require("./Server/Routes/postRoutes"))
 app.use("/api/chat", require("./Server/Routes/chatRoutes"))
 app.use("/api/message", require("./Server/Routes/messageRoutes"))
+app.use("/api/chart", require("./Server/Routes/chartRoutes"))
 app.use("/api", require("./Server/Routes/userRoutes"))
+
 
 app.use(notfound)
 app.use(errorHandler)

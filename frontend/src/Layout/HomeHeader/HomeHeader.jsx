@@ -22,6 +22,11 @@ function HomeHeader() {
     const user = JSON.parse(localStorage.getItem('user'))
     const open = Boolean(anchorElNav);
 
+    const handleLogoClick = () => {
+        console.log('logo');
+        navigate('/home')
+    }
+
     const handleNavAvatarClick = (event) => {
         setAnchorElNav(event.currentTarget);
     }
@@ -34,7 +39,7 @@ function HomeHeader() {
     return (
         <>
             <header className='User-Home-Header'>
-                <img src={logo} className='User-Home-logo' alt="logo" />
+                <img src={logo} className='User-Home-logo' onClick={handleLogoClick} alt="logo" />
                 <div className='User-Home-emptydiv'></div>
                 <img src={newpost} className='User-Home-Newpost' alt="newpost" onClick={() => {
                     showCreatePostModal ? createPostClose() : createPostOpen()

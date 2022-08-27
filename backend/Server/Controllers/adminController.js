@@ -60,7 +60,6 @@ module.exports.blockUser = async (req, res) => {
     try {
         const { id } = req.query;
         const User = await userByIdService(id);
-        console.log(id);
         const user = await UserblockService(id,User.blocked);
         res.json({user, created: true});
     } catch (error) {

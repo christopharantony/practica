@@ -1,14 +1,13 @@
 import HomeHeader from '../../../Layout/HomeHeader/HomeHeader';
 import Leftsection from '../../../Components/Users/Leftsection/Leftsection';
-import Posts from '../../../Components/Users/Posts/Posts';
+import Posts from '../../../Components/Users/Posts/MyPosts';
 import Chat from '../../../Components/Users/Chat/ChatBox';
 import { Grid } from '@mui/material';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Home.css';
+import '../Home/Home.css';
 import InterLeft from '../../../Components/Interviewer/InterLeft/InterLeft';
-
-function Home() {
+function MyPostsPage() {
     const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem('user'));
     useEffect(()=>{
@@ -38,4 +37,4 @@ function Home() {
     )
 }
 
-export default Home
+export default MyPostsPage;

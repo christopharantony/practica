@@ -11,6 +11,16 @@ import Single from './Pages/Admin/single/Single';
 import About from './Pages/User/About/About';
 import Landing from './Pages/User/Landing/Landing';
 import "react-toastify/dist/ReactToastify.css";
+import InterviewRequestPage from './Pages/Interviewer/InterviewRequestPage/InterviewRequestPage';
+import InterviewManagementPage from './Pages/Interviewer/InterviewManagementPage/InterviewManagementPage';
+import MyPostsPage from './Pages/User/MyPostsPage/MyPostsPage';
+import DashboardPage from './Pages/Interviewer/DashboardPage/DashboardPage';
+import InterviewerReportPage from './Pages/Interviewer/InterviewerReportPage/InterviewerReportPage';
+import InterviewerUpcomingPage from './Pages/Interviewer/UpcomingPage/InterviewerUpcomingPage';
+import UserUpcomingPage from './Pages/User/UpcomingPage/UserUpcomingPage';
+import UserNotificationgPage from './Pages/User/UserNotificationgPage/UserNotificationgPage';
+import CompletedInterviewsPage from './Pages/User/CompletedInterviewsPage/CompletedInterviewsPage';
+import FeedbackPage from './Pages/User/FeedbackPage/FeedbackPage';
 
 function App() {
   return (
@@ -21,6 +31,16 @@ function App() {
           <Route path='/about' element={<About />} />
           <Route path='/home' element={<Home />} />
           <Route path='/message' element={<Message />} />
+          <Route path='/requests' element={<InterviewRequestPage />} />
+          <Route path='/posts' element={<MyPostsPage/>}/>
+          <Route path='/dashboard' element={<DashboardPage />} />
+          <Route path='/report' element={<InterviewerReportPage />} />
+          <Route path='/upcoming' element={<UserUpcomingPage />} />
+          <Route path='/interviews' element={<CompletedInterviewsPage />} />
+          <Route path='/feedback' element={<FeedbackPage />} />
+          <Route path='/notifications' element={<UserNotificationgPage />} />
+          <Route path='/upcommings' element={<InterviewerUpcomingPage />} />
+          <Route path='/interview/management' element={<InterviewManagementPage />} />
         </Routes>
       </BrowserRouter>
       <div className="app">

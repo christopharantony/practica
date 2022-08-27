@@ -1,0 +1,30 @@
+.All-Request {
+    padding: 0 2rem;
+    border-radius: 12px;
+    align-items: center;
+    height: 510px;
+    width: 88%;
+}
+
+.All-Request>.Close-button {
+    cursor: pointer;
+    margin-left: 47.5rem;
+    padding-top: 1rem;
+    font-size: 2rem;
+    
+}
+
+.All-Request-list{
+    -ms-overflow-style: none;
+    scrollbar-width: none; 
+    overflow: scroll;
+    width: 100%;
+}
+
+.All-Request-list::-webkit-scrollbar {
+    display: none;
+}
+
+#root{
+    overflow: hidden;
+}

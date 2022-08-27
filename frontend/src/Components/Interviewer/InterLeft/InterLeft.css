@@ -1,0 +1,102 @@
+.InterLeft{
+    display: grid;
+    place-items: center;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.User-Home-box{
+    height: 410px;
+    width: 260px;
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    /* z-index: 1; */
+    top:3em;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 6px;
+    backdrop-filter: blur(10px);
+}
+
+.User-Home-content{
+    /* z-index: 2; */
+    position: absolute;
+}
+
+.InterLeft-Avatar{
+    position: absolute;
+    top: -400px;
+    left: 87px;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    box-shadow: 2px 1px 10px rgb(0 0 0);
+}
+
+.InterLeft-Name{
+    position: absolute;
+    left: 100px;
+    top: -310px;
+    font-weight: 100;
+    color: #baafbd;
+}
+
+.User-Home-profession{
+    letter-spacing: 1px;
+    font-size: .6em;
+    color:grey;
+    z-index: 30;
+    left: 50%;
+    display: flex;
+    justify-content: center;
+    top: -75px;
+    position: relative;
+    font-family: 'Edu VIC WA NT Beginner', cursive;
+}
+
+.User-Home-card__info{
+    z-index: 10;
+    position: relative;
+    margin: 1em 0;
+    list-style-type: none;
+    line-height: 1.5em;
+    padding: 0;
+}
+
+.User-Home-card__info .InterLeft-lists {
+    /* display: inline-block; */
+    /* text-align: center; */
+    /* padding: 0.5em; */
+    position: relative;
+    left: 38px;
+    top: -289px;
+}
+
+.User-Home-value{
+    font-size: 1rem;
+    padding-left: 0.5em;
+    display: inline-block;
+    font-weight: bold;
+    color: #8e7d91;
+}
+
+.pl-1{
+    padding-left: 1em;
+}
+
+.User-Home-parameter{
+    font-weight: bold;
+    font-size: .8rem;
+    color: #e7dfe8;
+    cursor: pointer;
+}
+
+.User-Home-follow{
+    position: absolute;
+    width: 10em;
+    top: 0;
+    z-index: 10;
+    left: 25px;
+    background: transparent;
+    color: #c8c1c9;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+}

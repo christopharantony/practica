@@ -9,7 +9,7 @@ function ChatList( { chat, currentUser } ) {
         const { selectedChat, setSelectedChat } = ChatState();
         const [ user, setUser ] = useState(null);
         useEffect(() => {
-            const friendId = chat.users.filter(user => user !== currentUser._id)[0];
+            const friendId = chat.users.filter(user => user !== currentUser?._id)[0];
             const fetchUser = async () => {
                 try {
                     const { data } = await axios.get(`/api/user/${friendId}`);

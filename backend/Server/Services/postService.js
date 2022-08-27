@@ -66,3 +66,24 @@ module.exports.commentService = async(postId,commentObj) => {
         console.log(error)
     }
 }
+
+module.exports.personalService = async(userId) => {
+    try {
+        const posts = await postDb.find({ createdBy: userId });
+        if (posts?.length !== 0) {
+            const postsCount = posts?.length;
+            const postData = await postDb.populate(posts,{
+                path: 'createdBy comments.commentedBy',
+                select: [ "name", "pic", "interviewer", "domain", "company", "_id"]
+            });
+            postData.sort((dateA, dateB) => {
+                return dateB.createdAt - dateA.createdAt;
+            });
+            return { postsCount, posts: postData };
+        } else {
+            return { postsCount: 0, posts: [] };
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}

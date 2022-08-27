@@ -1,83 +1,38 @@
-import { Box, Avatar, Typography, Button, TextField, Paper } from "@mui/material";
+import { Box, Avatar, Typography, Button, TextField } from "@mui/material";
 import { Grid, Card, CardContent, IconButton } from "@mui/material";
 import { useEffect } from "react";
 import axios from "../../../axiosInstance";
 import { useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import MessageIcon from "@mui/icons-material/Message";
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
-import Plus from "../../../Assets/Buttons/Plus.svg";
-import { useNavigate } from "react-router-dom";
 import "./Posts.css";
-function Posts() {
-    const navigate = useNavigate();
+
+function MyPosts() {
     const user = JSON.parse(localStorage.getItem("user"));
     const [posts, setPosts] = useState([]);
     const [postId, setPostId] = useState("");
     const [like, setLike] = useState(false);
     const [commentStatus, setCommentStatus] = useState(false);
     const [comment, setComment] = useState("");
-    const [requestStatus, setRequestStatus] = useState(false);
-    const [requestId, setRequestId] = useState("");
-    const [request, setRequest] = useState("");
 
-
-    const getAllPosts = async () => {
-        const { data } = await axios.get("api/post/all", {
-            headers: {
-                token: localStorage.getItem("token"),
-            },
-        });
-        setPosts(data);
-    };
-
-    const generateError = (error) =>
-        toast.error(error, {
-            position: "bottom-right"
-        })
-
-    const generateSuccess = (success) =>
-        toast.success(success, {
-            position: "bottom-right"
-        })
-
-    useEffect(() => {
-        getAllPosts();
-    }, []);
-
-    const handleConnect = async (id) => {
-        const { data } = await axios.post('api/connect', { id }, {
-            headers: {
-                token: localStorage.getItem("token")
-            }
-        })
-        if (data.error) {
-            generateError(data.error)
-        } else if (data.created) {
-            generateSuccess('Connected')
+    const config = {
+        headers: {
+            token: localStorage.getItem("token")
         }
     }
 
-    const handleChat = async (id) => {
-        const Object = {
-            senderId: user._id,
-            receiverId: id,
-        };
-        const config = {
-            headers: {
-                token: localStorage.getItem("token")
-            }
-        }
-        const { data } = await axios.post('api/chat', Object, config)
-        if (data.message === "Chat already exists") {
-            const chat = data.chat;
-            navigate("/message", { state: { chat } })
-        } else if (data.created) {
-            generateSuccess('Chat created')
-        }
+    const getMyPosts = async () => {
+        const { data } = await axios.get("api/post/myposts", config);
+        setPosts(data.posts);
     };
+
+    useEffect(() => {
+        getMyPosts();
+        // eslint-disable-next-line
+    }, []);
 
     const handleLike = async (id) => {
         const value = !like;
@@ -86,15 +41,9 @@ function Posts() {
             likes: value,
             postId: id
         }
-        const config = {
-            headers: {
-                token: localStorage.getItem("token")
-            }
-        }
-
+        
         await axios.post('api/post/posts/like', body, config);
-        const { data } = await axios.get('api/post/all', config);
-        setPosts(data)
+        getMyPosts()
     }
 
     const handleCommentStatus = async (id) => {
@@ -118,42 +67,10 @@ function Posts() {
         }
 
         await axios.post('api/post/posts/comment', body, config);
-        const { data } = await axios.get('api/post/all', config);
-        setPosts(data)
+        getMyPosts()
         const value = !commentStatus;
         setCommentStatus(value);
     }
-
-    const handleRequestStatus = async (id) => {
-        const value = !requestStatus;
-        setRequestStatus(value);
-        setRequestId(id);
-    }
-
-    const handleRequest = async (id) => {
-        if (request.trim() === "") {
-            return;
-        }
-        // console.log("interviewer",id)
-        setRequestStatus(false);
-        const body = {
-            request,
-            interviewerId: id
-        }
-        const config = {
-            headers: {
-                token: localStorage.getItem("token")
-            }
-        }
-        try {
-            const { data } = await axios.post('api/interview/request', body, config);
-            generateSuccess(data.message);
-        } catch (error) {
-            generateError('Something went wrong')
-            console.log(error)
-        }
-    }
-
     return (
         <Box
             className="scrollbar-hidden"
@@ -162,8 +79,7 @@ function Posts() {
             mt={2}
             pt={2}
         >
-            {posts &&
-                posts.map((post, index) => (
+            {posts?.map((post,index) => (
                     <Card
                         key={index}
                         sx={{
@@ -213,61 +129,10 @@ function Posts() {
                                         </Box>
                                     </Grid>
                                     <Grid item xs={3}>
-                                        {post.createdBy.interviewer && (
-                                            <Box onClick={
-                                                () => handleRequestStatus(post._id)
-                                            } >
-                                                <h2 className="post-creator-join">Request</h2>
-                                            </Box>
-                                        )}
+                                        
                                     </Grid>
                                 </Grid>
                             </header>
-
-                            {requestStatus && post._id === requestId && (
-                                <Box
-                                    sx={{
-                                        position: "absolute",
-                                        top: "40%",
-                                        left: "50%",
-                                        transform: "translate(-50%, 0)",
-                                    }}
-                                >
-                                    <Box
-                                        component={Paper}
-                                        width={400}
-                                        height="auto"
-                                        bgcolor="#b8f9ff"
-                                        borderRadius={4}
-                                        sx={{ p: 2, zIndex: 1 }}
-                                    >
-                                        <TextField
-                                            fullWidth
-                                            multiline
-                                            maxRows={3}
-                                            onChange={(e) => setRequest(e.target.value)}
-                                            placeholder="Cover letter"
-                                            variant="standard"
-                                        />
-                                        <Box
-                                            sx={{
-                                                display: "flex",
-                                                justifyContent: "space-between",
-                                                width: "100%",
-                                            }}
-                                        >
-                                            <Button
-                                                onClick={() => handleRequest(post.createdBy._id)}
-                                                variant="contained"
-                                                fullWidth
-                                                sx={{ mt: 3, mr: 1, float: "right" }}
-                                            >
-                                                Submit
-                                            </Button>
-                                        </Box>
-                                    </Box>
-                                </Box>
-                            )}
 
                             <Box className="post-content">
                                 <img
@@ -300,10 +165,6 @@ function Posts() {
                                         </IconButton>
                                     </Grid>
                                     <Grid item xs={4}>
-                                        {!(
-                                            user.connections.includes(post.createdBy._id) ||
-                                            post.createdBy._id === user._id
-                                        ) ? (
                                             <Box
                                                 sx={{
                                                     display: "flex",
@@ -316,26 +177,10 @@ function Posts() {
                                                 <IconButton
                                                     sx={{ position: 'inherit', pr: 5 }}
                                                     disableRipple={true}
-                                                    onClick={() => handleChat(post.createdBy._id)}
                                                 >
                                                     <SendRoundedIcon />
                                                 </IconButton>
                                             </Box>
-                                        ) : (
-                                            !(post.createdBy._id === user._id) && (
-                                                <Box
-                                                    sx={{
-                                                        display: "flex",
-                                                    }}
-                                                    onClick={() => {
-                                                        handleConnect(post.createdBy._id)
-                                                    }}
-                                                >
-                                                    <img src={Plus} alt="Plus" className="post-plus" />
-                                                    <h2 className="post-creator-connect">Connect</h2>
-                                                </Box>
-                                            )
-                                        )}
                                     </Grid>
                                 </Grid>
                             </Box>
@@ -435,12 +280,11 @@ function Posts() {
                         )}
                     </Card>
                 ))}
-            <ToastContainer />
         </Box>
-    );
+    )
 }
 
-export default Posts;
+export default MyPosts;
 
 const scrollbarhidden = {
     overflow: "scroll",

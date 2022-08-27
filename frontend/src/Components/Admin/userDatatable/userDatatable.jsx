@@ -30,7 +30,7 @@ const Datatable = (props) => {
       headers: {
         'adminToken': localStorage.getIten("adminToken")
     }
-    },{withCredentials:true})
+    })
     const {data} = await axios.get("api/admin/allUsers")
     setData(data);
   }
