@@ -2,7 +2,7 @@ import HomeHeader from '../../../Layout/HomeHeader/HomeHeader';
 import Leftsection from '../../../Components/Users/Leftsection/Leftsection';
 import Messages from '../../../Components/Users/Chat/Chat';
 import Chat from '../../../Components/Users/Chat/ChatBox';
-import { Grid } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,7 +16,7 @@ function Message() {
         }
     })
     return (
-        <div className='User-Home'>
+        <Box sx={{height:'100vh'}}>
             <HomeHeader />
             <Grid container spacing={3}>
                 <Grid item xs={12} md={3}>
@@ -29,7 +29,7 @@ function Message() {
                     <Chat />
                 </Grid>
             </Grid>
-        </div>
+        </Box>
     )
 }
 

@@ -4,8 +4,8 @@ import dayjs from "dayjs";
 function Messages({ message, own}) {
     var relativeTime = require('dayjs/plugin/relativeTime')
     dayjs.extend(relativeTime)
-    const ownStyle = { textAlign:"start", marginTop:2 ,width: '100%'  }
-    const otherStyle = { textAlign:"end", marginTop:2 ,width: '100%'  }
+    const otherStyle = { textAlign:"start", marginTop:2 ,width: '100%'  }
+    const ownStyle = { textAlign:"end", marginTop:2 ,width: '100%'  }
     return (
         <Grid container >
             <Box sx={own ? ownStyle : otherStyle }>
